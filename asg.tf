@@ -35,9 +35,9 @@ resource "aws_autoscaling_group" "failure_analysis_ecs_asg" {
   launch_configuration = aws_launch_configuration.ecs_launch_config.name
 
 
-  desired_capacity          = 2
+  desired_capacity          = 1
   min_size                  = 1
-  max_size                  = 2
+  max_size                  = 1
   health_check_grace_period = 300
   health_check_type         = "EC2"
 
@@ -74,7 +74,7 @@ resource "aws_ecs_capacity_provider" "ecs_capacity_provider" {
 }
 
 resource "aws_ecs_cluster_capacity_providers" "example" {
-  cluster_name = aws_ecs_cluster.aws_ecs_cluster.id
+  cluster_name       = aws_ecs_cluster.aws_ecs_cluster.id
   capacity_providers = [aws_ecs_capacity_provider.ecs_capacity_provider.name]
 
 }
